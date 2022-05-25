@@ -1,14 +1,14 @@
-export type Fnnext = (next: Fnnext) => void
-export type Context = Record<any, any>
+export type Fnnext = () => void
+export type Context = FnApp
 export interface FnApp {
-  use(name: string, fn: (context: Context) => void): void
+  use(name: string, fn: (context?: Context, next?: Fnnext) => void): FnApp
   handle(): void
   stack: Array<HandleType>
   run(): void
   data: Record<any, any>
 }
 
-interface HandleType {
+export interface HandleType {
   name: string
-  handle: (context: Record<any, any>) => void
+  handle: (context: FnApp, next?: Fnnext) => void
 }
