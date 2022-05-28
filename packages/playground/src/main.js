@@ -14,31 +14,45 @@ let m = new Promise((res) => {
 
 const app = middle()
 
-app.use('name0', async function (context, next) {
+app.use('name0',  function (context, next) {
+   
+    // const v =  m 
     
-    const v = await m
-    debugger
-    console.log(v)
+    // console.log(v)
     console.log(4)
-    await next()
-    console.log(3)
+     next()
+    console.log(9)
 
 })
 
-// app.use('name3', async function (context, next) {
+app.use('name3', function (context, next) {
 
+  setTimeout(()=> {
+    console.log(11)
+    next()
+  },100)
+  
+ 
+})
+
+// app.use('name3', function (context, next) {
+//   // throw(new Error('ssd')) 
 //   Promise.resolve(3).then(res => {
 //     console.log(res)
+   
 //   })
-//   await next()
+//   next()
+
  
 // })
 
 app.use('name3', async function (context, next) {
-
+  
   console.log(1)
+  
   await next()
   console.log(6)
 })
+
 
 app.run()

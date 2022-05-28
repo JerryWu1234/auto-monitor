@@ -1,7 +1,8 @@
-export type Fnnext = () => void
+import type { ContextClass } from './context'
+export type Fnnext = (i: number) => void
 export type Context = FnApp
 export interface FnApp {
-  use(name: string, fn: (context?: Context, next?: Fnnext) => void): FnApp
+  use(name: string, fn: (context?: ContextClass, next?: Fnnext) => void): FnApp
   handle(): void
   stack: Array<HandleType>
   run(): void
@@ -10,5 +11,5 @@ export interface FnApp {
 
 export interface HandleType {
   name: string
-  handle: (context: FnApp, next?: Fnnext) => void
+  handle: (context: ContextClass, next?: Fnnext) => void
 }

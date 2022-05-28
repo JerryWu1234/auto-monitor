@@ -1,11 +1,13 @@
-import type { Context, FnApp, Fnnext, HandleType } from './types'
+import type { FnApp, Fnnext, HandleType } from './types'
+import { ContextClass } from './context'
+const context = new ContextClass()
 const proto: FnApp = {
-  use(name: string, fn: (context?: Context, next?: Fnnext) => void): FnApp {
+  use(name: string, fn: (context?: ContextClass, next?: Fnnext) => void): FnApp {
     if (arguments.length !== 2)
-      Error('use() must be called with 2 arguments')
+      throw (new Error('use() must be called with 2 arguments'))
 
-    if (typeof name === 'string')
-      Error('use() first argument must be a string')
+    if (typeof name !== 'string')
+      throw (new Error('use() first argument must be a string'))
 
     this.stack.push({
       name,
@@ -15,33 +17,27 @@ const proto: FnApp = {
     return this
   },
   handle() {
-    let index = 0
-
-    const next = (err?: Error) => {
-      const item = this.stack?.[index++]
-      if (item !== undefined)
-        call(item.handle.bind(this), this, next, err)
+    const compose = (middleList: Array<HandleType>) => {
+      const dispatch = (i: number) => {
+        const middle = middleList?.[i++]
+        if (middle !== undefined) {
+          try {
+            middle.handle(context, dispatch.bind(this, i))
+          }
+          catch (e) {
+            console.error(e)
+          }
+        }
+      }
+      return dispatch(0)
     }
-
-    next()
+    compose(this.stack)
   },
   stack: [],
   run() {
     this.handle()
   },
   data: {},
-}
-
-async function call(handle: HandleType['handle'], context: Context, next: (err?: Error) => void, err?: Error) {
-  let error = err
-  try {
-    await handle(context, next)
-  }
-  catch (e) {
-    error = e as Error
-  }
-
-  next(error)
 }
 
 export default function createMiddle(): FnApp {
