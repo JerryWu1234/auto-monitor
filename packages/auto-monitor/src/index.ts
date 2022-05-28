@@ -1,8 +1,10 @@
 import type { FnApp, Fnnext, HandleType } from './types'
 import { ContextClass } from './context'
+
 const context = new ContextClass()
+
 const proto: FnApp = {
-  use(name: string, fn: (context?: ContextClass, next?: Fnnext) => void): FnApp {
+  use(name: string, fn: (context: ContextClass, next?: Fnnext) => void): FnApp {
     if (arguments.length !== 2)
       throw (new Error('use() must be called with 2 arguments'))
 

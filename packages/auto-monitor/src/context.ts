@@ -1,5 +1,6 @@
+import type { ContextList } from './types'
 export class ContextClass {
-  private data: any = []
+  private data: ContextList = []
   private hooks: Record<string, Array<(...arg: any) => void>> = {}
 
   public dispatch(name: string, pluginData: Record<any, any>) {
