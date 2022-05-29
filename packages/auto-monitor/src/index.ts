@@ -1,48 +1,8 @@
-import type { FnApp, Fnnext, HandleType } from './types'
-import { ContextClass } from './context'
+import type { App, FnApp } from './types'
+import { proto } from './middle'
 
-const context = new ContextClass()
-
-const proto: FnApp = {
-  use(name: string, fn: (context: ContextClass, next?: Fnnext) => void): FnApp {
-    if (arguments.length !== 2)
-      throw (new Error('use() must be called with 2 arguments'))
-
-    if (typeof name !== 'string')
-      throw (new Error('use() first argument must be a string'))
-
-    this.stack.push({
-      name,
-      handle: fn,
-    })
-
-    return this
-  },
-  handle() {
-    const compose = (middleList: Array<HandleType>) => {
-      const dispatch = (i: number) => {
-        const middle = middleList?.[i++]
-        if (middle !== undefined) {
-          try {
-            middle.handle(context, dispatch.bind(this, i))
-          }
-          catch (e) {
-            console.error(e)
-          }
-        }
-      }
-      return dispatch(0)
-    }
-    compose(this.stack)
-  },
-  stack: [],
-  run() {
-    this.handle()
-  },
-  data: {},
-}
-
-export default function createMiddle(): FnApp {
-  return proto
+export default function monitor(data: App): FnApp {
+  const app = proto(data)
+  return app
 }
 

@@ -1,5 +1,13 @@
-import type { ContextList } from './types'
+import { http, sendAxios, sendBeacon } from './http'
+import type { App, ContextList, HttpArg } from './types'
 export class ContextClass {
+  constructor(app: App) {
+    this.argData = app
+    this.http = http(app?.interceptors)
+  }
+
+  private argData: App
+  public http
   private data: ContextList = []
   private hooks: Record<string, Array<(...arg: any) => void>> = {}
 
@@ -28,5 +36,13 @@ export class ContextClass {
       if (index > -1)
         hooks.splice(index, 1)
     }
+  }
+
+  public send(data: HttpArg) {
+    if (data.isBeacon)
+      return sendBeacon(data)
+
+    else
+      return sendAxios(data, this.http)
   }
 }
