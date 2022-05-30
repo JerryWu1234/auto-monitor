@@ -6,7 +6,7 @@ beforeEach(() => {
 })
 describe('test middle', () => {
   it('test parseUserAgent and test detectdevice middle', () => {
-    const app = createMiddle()
+    const app = createMiddle({ url: 'http://localhost:3000' })
     app.use('detectDevice', detectDevice())
     app.run()
     expect(app.stack.length).toBe(1)
