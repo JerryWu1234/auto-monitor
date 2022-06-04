@@ -34,3 +34,4 @@ export const detectDevice = () => {
     next && next()
   }
 }
+

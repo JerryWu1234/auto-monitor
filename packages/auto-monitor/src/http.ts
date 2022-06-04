@@ -2,9 +2,10 @@ import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import type { HttpArg } from './types'
 
-export function http(interceptors?: (config: AxiosRequestConfig) => AxiosRequestConfig) {
+export function http(baseUrl: string, interceptors?: (config: AxiosRequestConfig) => AxiosRequestConfig) {
   const ax = axios.create({
     timeout: 3000,
+    baseURL: baseUrl,
   })
   ax.interceptors.request.use((config) => {
     if (interceptors)

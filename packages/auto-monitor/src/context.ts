@@ -1,24 +1,30 @@
 import { http, sendAxios, sendBeacon } from './http'
-import type { App, ContextList, HttpArg } from './types'
+import type { App, ContextList, EmptyObj, FnRunArg, HttpArg } from './types'
 export class ContextClass {
-  constructor(app: App) {
+  constructor(app: App, callback?: FnRunArg) {
     this.argData = app
-    this.http = http(app?.interceptors)
+    this.http = http(app.url, app.interceptors)
+    this.callback = callback
   }
 
+  private callback?: FnRunArg
   private argData: App
   public http
-  private data: ContextList = []
+  private data: ContextList = {}
   private hooks: Record<string, Array<(...arg: any) => void>> = {}
 
-  public dispatch(name: string, pluginData: Record<any, any>) {
-    if (name && typeof pluginData === 'object')
+  public dispatch(name: string, pluginData: EmptyObj) {
+    if (!name && typeof pluginData !== 'object')
       throw new Error('argument error')
+    this.data[name] = pluginData
+  }
 
-    this.data.push({
-      name,
-      pluginData,
-    })
+  get contextData() {
+    return this.data
+  }
+
+  set contextData(newVal: any) {
+    throw new Error('contextData is readonly')
   }
 
   public $on(name: string, fn: (...arg: any[]) => void) {
@@ -38,11 +44,23 @@ export class ContextClass {
     }
   }
 
-  public send(data: HttpArg) {
+  private send(data: HttpArg) {
     if (data.isBeacon)
       return sendBeacon(data)
-
     else
       return sendAxios(data, this.http)
+  }
+
+  public axios(name: string, data: EmptyObj, isBeacon = false) {
+    this.dispatch(name, data)
+    const obj = this.callback?.call(null, this.data) || {}
+    if (typeof obj !== 'object')
+      throw new Error('callback must return an object')
+
+    this.send({
+      isBeacon,
+      data: obj,
+      url: this.argData.url,
+    })
   }
 }

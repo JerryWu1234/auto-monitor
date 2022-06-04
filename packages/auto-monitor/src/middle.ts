@@ -1,8 +1,7 @@
-import type { App, FnApp, Fnnext, HandleType } from './types'
+import type { App, FnApp, FnRunArg, Fnnext, HandleType } from './types'
 import { ContextClass } from './context'
 
 export const proto = (data: App): FnApp => {
-  const context = new ContextClass(data)
   return {
     use(name: string, fn: (context: ContextClass, next?: Fnnext) => void): FnApp {
       if (arguments.length !== 2)
@@ -18,7 +17,7 @@ export const proto = (data: App): FnApp => {
 
       return this
     },
-    handle() {
+    handle(context: ContextClass) {
       const compose = (middleList: Array<HandleType>) => {
         const dispatch = (i: number) => {
           const middle = middleList?.[i++]
@@ -33,12 +32,13 @@ export const proto = (data: App): FnApp => {
         }
         return dispatch(0)
       }
+
       compose(this.stack)
     },
     stack: [],
-    run() {
-      this.handle()
+    run(callback: FnRunArg) {
+      const context = new ContextClass(data, callback)
+      this.handle(context)
     },
-    context,
   }
 }
