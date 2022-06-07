@@ -139,7 +139,14 @@ export const route = () => {
     }
 
     function submitHandle($event: Event, data: CreateRouterImpl, state: 0 | 1, isBeacon = false) {
-      context.axios('route', { ...data, state, eventType: $event.type }, isBeacon)
+      const o = {
+        ...data, state, eventType: $event.type, consoleType: 'route',
+      }
+      if ($event.type === 'pageshow')
+        context.dispatch('route', o)
+
+      else
+        context.axios('route', o, isBeacon)
     }
 
     handleEvent({ type: 'pageshow' } as Event, data)

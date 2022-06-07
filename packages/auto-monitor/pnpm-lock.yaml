@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@antfu/eslint-config': ^0.23.1
+  '@sumup/performance-observer': ^1.0.2
   '@types/axios': ^0.14.0
   '@types/node': ^17.0.34
   '@types/ua-parser-js': ^0.7.36
@@ -20,6 +21,7 @@ specifiers:
   vitest: ^0.12.6
 
 dependencies:
+  '@sumup/performance-observer': 1.0.2
   axios: 0.27.2
   ua-parser-js: 1.0.2
 
@@ -241,6 +243,10 @@ packages:
     resolution: {integrity: sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==}
     engines: {node: '>=6'}
     dev: true
+
+  /@sumup/performance-observer/1.0.2:
+    resolution: {integrity: sha512-KE4ZY60a4fhCdXWatttNAX+sfyb05CXTBN9xqcUPotNRe2F+B5RV+ZapDBuOuyQGi6e1AaNiMxdirXAsqRsb4Q==}
+    dev: false
 
   /@szmarczak/http-timer/1.1.2:
     resolution: {integrity: sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==}
