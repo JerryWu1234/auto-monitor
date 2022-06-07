@@ -26,6 +26,7 @@
     "*.d.ts"
   ],
   "scripts": {
+    "test:e2e": "cypress open",
     "build": "tsup",
     "dev": "tsup --watch src",
     "build:fix": "esno scripts/postbuild.ts",
@@ -40,6 +41,7 @@
     "@types/node": "^17.0.34",
     "@types/ua-parser-js": "^0.7.36",
     "bumpp": "^7.1.1",
+    "cypress": "^10.0.3",
     "eslint": "^8.15.0",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.11",
