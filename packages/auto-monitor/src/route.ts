@@ -1,4 +1,4 @@
-import type { Fnnext } from '../dist/types'
+import type { Fnnext } from './types'
 import type { ContextClass } from './context'
 import { routerMode } from './util'
 

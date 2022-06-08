@@ -1,8 +1,7 @@
 import * as performanceObserver from '@sumup/performance-observer'
 import type { IMetricName } from '@sumup/performance-observer'
-import type { Fnnext } from '../dist/types'
 import type { ContextClass } from './context'
-import type { EmptyObj } from './types'
+import type { EmptyObj, Fnnext } from './types'
 
 export const performance = () => {
   const data: EmptyObj = {
