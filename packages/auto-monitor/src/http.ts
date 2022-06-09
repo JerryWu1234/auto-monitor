@@ -8,6 +8,7 @@ export function http(baseUrl: string, interceptors?: (config: AxiosRequestConfig
     baseURL: baseUrl,
   })
   ax.interceptors.request.use((config) => {
+    debugger
     if (interceptors)
       return interceptors.call(ax, config)
 
@@ -21,27 +22,33 @@ export function http(baseUrl: string, interceptors?: (config: AxiosRequestConfig
 export function sendAxios(data: HttpArg, http: AxiosInstance) {
   const submitData: Record<any, any> = {}
 
-  if (data.methdo === 'get' || data.methdo === 'GET')
+  if (data.method === 'get' || data.method === 'GET')
     submitData.params = data.data
   else
     submitData.data = data.data
-
   return http({
     url: data.url,
-    method: data.methdo,
-    ...submitData,
+    method: data.method,
+    data: {
+      adsd: 2323,
+    },
   })
 }
 
 export function sendBeacon(data: Omit<HttpArg, 'isBeacon' | 'methdo'>) {
-  const str = formatChange(data)
-  return navigator.sendBeacon(`${data.url}?${str}`.replace(/\+/g, '%2B').replace(/\"/g, '%22').replace(/\'/g, '%27').replace(/\//g, '%2F'))
+  const str = formatChange(data.data)
+  return navigator.sendBeacon(`${data.url}?${str}`)
 }
 
 function formatChange(data: HttpArg['data']) {
   let str = ''
-  for (const key of Object.keys(data))
-    str += `${key}=${data[key]}&`
+  for (const key of Object.keys(data)) {
+    if (typeof data[key] === 'object')
+      str += `${key}=${JSON.stringify(data[key])}&`
+
+    else
+      str += `${key}=${data[key]}&`
+  }
 
   return str
 }

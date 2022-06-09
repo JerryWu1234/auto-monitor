@@ -142,13 +142,8 @@ export const route = () => {
       const o = {
         ...data, state, eventType: $event.type, consoleType: 'route',
       }
-      if ($event.type === 'pageshow')
-        context.dispatch('route', o)
-
-      else
-        context.axios('route', o, isBeacon)
+      context.axios('route', o, isBeacon)
     }
-
     handleEvent({ type: 'pageshow' } as Event, data)
     next && next()
   }

@@ -7,6 +7,7 @@ specifiers:
   '@types/node': ^17.0.34
   '@types/ua-parser-js': ^0.7.36
   axios: ^0.27.2
+  backend: ^0.0.0
   bumpp: ^7.1.1
   cypress: ^10.0.3
   eslint: ^8.15.0
@@ -24,6 +25,7 @@ specifiers:
 dependencies:
   '@sumup/performance-observer': 1.0.2
   axios: 0.27.2
+  backend: 0.0.0
   ua-parser-js: 1.0.2
 
 devDependencies:
@@ -688,6 +690,10 @@ packages:
       form-data: 4.0.0
     transitivePeerDependencies:
       - debug
+
+  /backend/0.0.0:
+    resolution: {integrity: sha512-Fq2aG5+zmmsKv2Dhm3ijAU5spnKOb5ldJlnnC/Vhk6n8In6zaq9eCPBMRiz2j94P/r84QEaBmtwh9tjaDPiQqg==}
+    dev: false
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}

@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "dependencies": {
     "auto-monitor": "^0.1.0",
+    "backend": "^0.0.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {

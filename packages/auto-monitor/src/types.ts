@@ -22,12 +22,13 @@ export type FnRunArg = (data: Record<any, any>) => Record<any, any>
 
 export interface App {
   url: string
+  method?: 'get' | 'GET' | 'post' | 'POST'
   interceptors?: (config: AxiosRequestConfig) => AxiosRequestConfig
 }
 
 export interface HttpArg {
-  methdo?: Method
+  method?: Method
   isBeacon?: boolean
-  url: string
+  url?: string
   data: Record<any, any>
 }

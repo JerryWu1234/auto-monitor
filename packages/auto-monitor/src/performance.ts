@@ -32,11 +32,14 @@ export const performance = () => {
 
       else
         data[name] = value
-
-      setTimeout(() => {
-        context.axios('performance', data)
-      }, 300)
     })
+
+    const v = setInterval(() => {
+      if (data['first-input-delay']) {
+        setTimeout(() => context.axios('performance', data), 300)
+        clearInterval(v)
+      }
+    }, 1000)
 
     next && next()
   }

@@ -61,6 +61,7 @@ export class ContextClass {
       isBeacon,
       data: obj,
       url: this.argData.url,
+      method: this.argData.method || 'post',
     })
   }
 }

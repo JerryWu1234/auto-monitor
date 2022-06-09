@@ -2,10 +2,12 @@ lockfileVersion: 5.4
 
 specifiers:
   '@vitejs/plugin-vue': ^2.3.3
+  backend: ^0.0.0
   vite: ^2.9.9
   vue: ^3.2.25
 
 dependencies:
+  backend: 0.0.0
   vue: 3.2.35
 
 devDependencies:
@@ -112,6 +114,10 @@ packages:
 
   /@vue/shared/3.2.35:
     resolution: {integrity: sha512-/sxDqMcy0MsfQ3LQixKYDxIinDYNy1dXTsF2Am0pv0toImWabymFQ8cFmPJnPt+gh5ElKwwn7KzQcDbLHar60A==}
+    dev: false
+
+  /backend/0.0.0:
+    resolution: {integrity: sha512-Fq2aG5+zmmsKv2Dhm3ijAU5spnKOb5ldJlnnC/Vhk6n8In6zaq9eCPBMRiz2j94P/r84QEaBmtwh9tjaDPiQqg==}
     dev: false
 
   /csstype/2.6.20:
