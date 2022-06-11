@@ -1,6 +1,9 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 4000
+var jsonParser = bodyParser.json()
+// var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method')
@@ -10,7 +13,8 @@ app.use((req, res, next) => {
 })
 
 
-app.post('/', (req, res) => {
+
+app.post('/', jsonParser, (req, res) => {
   console.log(req.query)
   console.log(req.body)
   debugger
