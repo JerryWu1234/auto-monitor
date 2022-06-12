@@ -9,6 +9,7 @@ export const error = () => {
         filename: event.filename,
         position: `${event.lineno}:${event.colno}`,
         stack: event.error.stack,
+        consoleType: 'error',
       })
     })
 
@@ -42,6 +43,7 @@ export const error = () => {
         filename: file,
         position: `${line}:${column}`,
         stack,
+        consoleType: 'unhandledrejection',
       })
     })
     next && next()
