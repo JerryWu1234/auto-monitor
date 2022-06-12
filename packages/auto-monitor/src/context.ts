@@ -10,17 +10,27 @@ export class ContextClass {
   private callback?: FnRunArg
   private argData: App
   public http
-  private data: ContextList = {}
+  private data: ContextList[] = []
   private hooks: Record<string, Array<(...arg: any) => void>> = {}
 
   public dispatch(name: string, pluginData: EmptyObj) {
     if (!name && typeof pluginData !== 'object')
       throw new Error('argument error')
-    this.data[name] = pluginData
+    const index = this.data.findIndex(item => item[name] !== undefined)
+    if (index > -1) {
+      this.data.splice(index, 1)
+      this.data.unshift({ [name]: pluginData })
+    }
+    else {
+      this.data.unshift({ [name]: pluginData })
+    }
   }
 
   get contextData() {
-    return this.data
+    const v = Object.values(this.data).reduce((a: any, item: ContextList) => {
+      return { ...a, ...Object.values(item)[0] }
+    }, {})
+    return v
   }
 
   set contextData(newVal: any) {
@@ -53,7 +63,7 @@ export class ContextClass {
 
   public axios(name: string, data: EmptyObj, isBeacon = false) {
     this.dispatch(name, data)
-    const obj = this.callback?.call(null, this.data) || {}
+    const obj = this.callback?.call(null, this.contextData) || {}
     if (typeof obj !== 'object')
       throw new Error('callback must return an object')
 

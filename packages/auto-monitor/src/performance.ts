@@ -36,6 +36,7 @@ export const performance = () => {
 
     const v = setInterval(() => {
       if (data['first-input-delay']) {
+        data.consoleType = 'performance'
         setTimeout(() => context.axios('performance', data), 300)
         clearInterval(v)
       }

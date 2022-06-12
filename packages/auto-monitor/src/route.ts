@@ -138,9 +138,10 @@ export const route = () => {
       data.toArg = path.pageArg
     }
 
+    // came in  page when state was "0", came out page when state was "1"
     function submitHandle($event: Event, data: CreateRouterImpl, state: 0 | 1, isBeacon = false) {
       const o = {
-        ...data, state, eventType: $event.type, consoleType: 'route',
+        ...data, state, event: $event.type, consoleType: 'route',
       }
       context.axios('route', o, isBeacon)
     }

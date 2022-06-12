@@ -8,10 +8,8 @@ export function http(baseUrl: string, interceptors?: (config: AxiosRequestConfig
     baseURL: baseUrl,
   })
   ax.interceptors.request.use((config) => {
-    debugger
     if (interceptors)
       return interceptors.call(ax, config)
-
     return config
   }, (error) => {
     return Promise.reject(error)
@@ -29,13 +27,11 @@ export function sendAxios(data: HttpArg, http: AxiosInstance) {
   return http({
     url: data.url,
     method: data.method,
-    data: {
-      adsd: 2323,
-    },
+    ...submitData,
   })
 }
 
-export function sendBeacon(data: Omit<HttpArg, 'isBeacon' | 'methdo'>) {
+export function sendBeacon(data: Omit<HttpArg, 'isBeacon' | 'method'>) {
   const str = formatChange(data.data)
   return navigator.sendBeacon(`${data.url}?${str}`)
 }

@@ -4,6 +4,7 @@ export { detectDevice } from './detectDevice'
 export { error } from './error'
 export { route } from './route'
 export { performance } from './performance'
+export { event } from './event'
 export function monitor(data: App): FnApp {
   const app = proto(data)
   return app
