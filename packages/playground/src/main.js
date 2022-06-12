@@ -2,7 +2,6 @@ import {
   createApp
 } from 'vue'
 import {
-  
   detectDevice,
   error,
   performance,

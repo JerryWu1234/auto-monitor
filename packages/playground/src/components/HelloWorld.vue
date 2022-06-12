@@ -13,7 +13,7 @@ function ccc(){
       "sd": '23',
     },
     event_type: 'click',
-  })
+  });
 }
 </script>
 

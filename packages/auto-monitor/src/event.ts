@@ -1,10 +1,6 @@
 import type { EmptyObj, Fnnext } from './types'
 import type { ContextClass } from './context'
 
-declare global {
-  interface Window { pageClick: (data: EmptyObj) => void }
-}
-
 export const event = () => {
   return (context: ContextClass, next?: Fnnext) => {
     const submitData: EmptyObj = {
