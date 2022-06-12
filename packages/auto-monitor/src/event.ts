@@ -12,10 +12,13 @@ export const event = () => {
       event_type: 'click',
       client_time: new Date()?.getTime(),
       click_arg: {},
+      consoleType: 'click',
     }
     function pageClick(data: EmptyObj, fn?: (data: EmptyObj) => EmptyObj) {
       submitData.click_arg = data.arg
-      submitData.event_id = `${data.event_type}_${data.to}_${data.ctrl_name}`
+      submitData.consoleType = data.event_type
+      submitData.event_type = data.event_type
+      submitData.event_id = `${data.event_type}_${context.contextData.to}_${data.ctrl_name}`
       context.axios('event', !fn ? submitData : fn(submitData))
     }
     window.pageClick = pageClick

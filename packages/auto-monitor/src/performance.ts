@@ -40,7 +40,7 @@ export const performance = () => {
         setTimeout(() => context.axios('performance', data), 300)
         clearInterval(v)
       }
-    }, 1000)
+    }, 10)
 
     next && next()
   }

@@ -17,7 +17,6 @@ app.use((req, res, next) => {
 app.post('/', jsonParser, (req, res) => {
   console.log(req.query)
   console.log(req.body)
-  debugger
   res.send('Hello World!')
 })
 
