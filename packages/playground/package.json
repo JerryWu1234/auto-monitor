@@ -5,7 +5,8 @@
   "dependencies": {
     "auto-monitor": "^0.1.0",
     "backend": "^0.0.0",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.16"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",

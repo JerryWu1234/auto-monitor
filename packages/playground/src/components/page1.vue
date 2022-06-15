@@ -18,7 +18,7 @@ function ccc(){
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>page1</h1>
 
   <p>
     Recommended IDE setup:

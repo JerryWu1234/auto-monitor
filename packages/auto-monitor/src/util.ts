@@ -7,11 +7,13 @@ const hashRouter = () => {
   if (path.includes('?')) {
     const l = path.split('?')
     return {
+      routeMode: 'hash',
       path: l?.[0],
       pageArg: getHashParam(l?.[1]),
     }
   }
   return {
+    routeMode: 'hash',
     path,
     pageArg: {},
   }
@@ -21,6 +23,7 @@ const historyRouter = (path?: string) => {
   const pathName = path || window.location.pathname
 
   return {
+    routeMode: 'history',
     path: pathName,
     pageArg: getHistorySearch(location.search),
   }

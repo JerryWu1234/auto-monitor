@@ -7,6 +7,7 @@ export type EventsType = 'pushState' | 'replaceState'
 export type Events = EventsType | 'pageshow' | 'popstate' | 'visibilitychange' | 'beforeunload' | 'unload'
 
 interface routerObject {
+  routeMode: 'hash' | 'history'
   path: string
   pageArg: Record<any, any>
 }
@@ -16,6 +17,7 @@ interface EventImpl extends Event {
 }
 
 interface CreateRouterImpl {
+  routeMode: 'hash' | 'history'
   to: string | null
   toArg: Record<any, any>
   form: string | null
@@ -58,12 +60,13 @@ function excuseEventListent(callback: (eventName: Events, $event: Event) => void
 export const route = () => {
   return (context: ContextClass, next?: Fnnext) => {
     let processingBeforeunload = false
-    const data = {
+    const data: CreateRouterImpl = {
       form: null,
       formArg: {},
       to: null,
       toArg: {},
       time: 0,
+      routeMode: 'hash',
     }
     excuseEventListent((name: Events, $event: Event) => {
       const time = new Date().getTime()
@@ -101,7 +104,7 @@ export const route = () => {
     function visibilitychange($event: Event, data: CreateRouterImpl) {
       if (document.visibilityState === 'hidden' && processingBeforeunload === false) {
         submitHandle($event, { ...data, time: new Date()?.getTime() }, 1, true)
-        switchRouter(data, routerMode())
+        switchRouter(data, routerMode() as routerObject)
       }
       if (document.visibilityState === 'visible')
 
@@ -124,7 +127,7 @@ export const route = () => {
       if (data.to !== null)
         submitHandle($event, { ...data }, 1)
 
-      switchRouter(data, routerMode())
+      switchRouter(data, routerMode() as routerObject)
       // 进入页面上报
       const time = new Date().getTime()
       submitHandle($event, { ...data, time }, 0)
@@ -136,6 +139,7 @@ export const route = () => {
       data.formArg = data.toArg || null
       data.to = path.path
       data.toArg = path.pageArg
+      data.routeMode = path.routeMode
     }
 
     // came in  page when state was "0", came out page when state was "1"
