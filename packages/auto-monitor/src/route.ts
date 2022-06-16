@@ -98,7 +98,13 @@ export const route = () => {
     }
 
     function replaceState($event: Event, data: CreateRouterImpl) {
-      handleEvent($event, data)
+      // The replacement method of mainland vue3
+      Promise.resolve(() => {
+        if (history.state?.replaced === false)
+          return
+
+        handleEvent($event, data)
+      })
     }
 
     function visibilitychange($event: Event, data: CreateRouterImpl) {
