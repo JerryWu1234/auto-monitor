@@ -14,10 +14,16 @@ app.use((req, res, next) => {
 
 
 
-app.post('/', jsonParser, (req, res) => {
+app.post('/index', jsonParser, (req, res) => {
   console.log(req.query)
   console.log(req.body)
   res.send('Hello World!')
+})
+
+app.post('/click', jsonParser, (req, res) => {
+  console.log(req.query)
+  console.log(req.body)
+  res.send('Hello World!click')
 })
 
 app.listen(port, () => {

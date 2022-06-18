@@ -8,7 +8,7 @@ export class ContextClass {
   }
 
   private callback?: FnRunArg
-  private argData: App
+  public argData: App
   public http
   private data: ContextList[] = []
   private hooks: Record<string, Array<(...arg: any) => void>> = {}
