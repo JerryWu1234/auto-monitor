@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Example App - Home</title>
+</head>
+
+<body>
+
+  <!-- Uses built-in `if` helper. -->
+  <h1>Home</h1>
+
+  <!-- Calls `foo` helper, overridden at render-level. -->
+  <p>
+    {{#each list}}
+      <p>{{this}}</p>
+   {{/each}}
+  </p>
+
+  <!-- Calls `bar` helper, defined at instance-level. -->
+
+</body>
+
+</html>
