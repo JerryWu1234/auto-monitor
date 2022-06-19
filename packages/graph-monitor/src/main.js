@@ -15,10 +15,10 @@ new Vue({
 }).$mount('#app');
 
 registerMicroApps([{
-  name: 'reactApp',
-  entry: '//localhost:5000',
+  name: 'webpackJsonp_vue2.0',
+  entry: '//localhost:8000',
   container: '#container',
-  activeRule: '/app-vue',
+  activeRule: '/vue',
 }]);
 // 启动 qiankun
 start();
