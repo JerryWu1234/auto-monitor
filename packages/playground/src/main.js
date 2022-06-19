@@ -17,7 +17,7 @@ import App from './App.vue'
 
 createApp(App).use(router).mount('#app')
 
-
+window.monitorlist = []
 monitor({
     url: 'http://localhost:4000/index'
   })
@@ -26,5 +26,7 @@ monitor({
   .use('event', event()).use('route', route())
   .use('error', error()).use('ajaxpluin', ajaxpluin()).run((e) => {
     console.log(e)
+    window.monitorlist.push(e)
+    window.sessionStorage.setItem('monitor', JSON.stringify(e))
     return e
   })

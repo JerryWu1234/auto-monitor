@@ -6,7 +6,7 @@ defineProps({
 })
 
 const count = ref(0)
-function ccc(){
+function ccc() {
   pageClick({
     ctrl_name: 's',
     arg: {
@@ -14,6 +14,11 @@ function ccc(){
     },
     event_type: 'click',
   });
+  count.value++
+}
+
+function fff() { 
+  
 }
 </script>
 
@@ -35,7 +40,7 @@ function ccc(){
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
 
-  <button type="button" @click="ccc">count is: {{ count }}</button>
+  <button type="button" class="click1" @click="ccc">count is: {{ count }}</button>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.

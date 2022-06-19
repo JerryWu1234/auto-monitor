@@ -44,8 +44,11 @@ app.post('/index', jsonParser, (req, res) => {
 })
 
 app.post('/click', jsonParser, (req, res) => {
-  console.log(req.query)
-  console.log(req.body)
+  if(Object.keys(req.body).length > 0) {
+    list.push(JSON.stringify(req.body))
+  }else{
+    list.push(JSON.stringify(req.query))
+  }
   res.send('Hello World!click')
 })
 

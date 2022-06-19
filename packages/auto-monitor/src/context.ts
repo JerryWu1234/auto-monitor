@@ -19,10 +19,10 @@ export class ContextClass {
     const index = this.data.findIndex(item => item[name] !== undefined)
     if (index > -1) {
       this.data.splice(index, 1)
-      this.data.unshift({ [name]: pluginData })
+      this.data.push({ [name]: pluginData })
     }
     else {
-      this.data.unshift({ [name]: pluginData })
+      this.data.push({ [name]: pluginData })
     }
   }
 
