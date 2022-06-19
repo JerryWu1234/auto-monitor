@@ -10,14 +10,14 @@ export const event = () => {
       click_arg: {},
       consoleType: 'click',
     }
-    function pageClick(data: EmptyObj, fn?: (data: EmptyObj) => EmptyObj) {
+    function customEvent(data: EmptyObj, fn?: (data: EmptyObj) => EmptyObj) {
       submitData.click_arg = data.arg
       submitData.consoleType = data.event_type
       submitData.event_type = data.event_type
       submitData.event_id = `${data.event_type}_${context.contextData.to}_${data.ctrl_name}`
       context.axios('event', !fn ? submitData : fn(submitData))
     }
-    window.pageClick = pageClick
+    window.customEvent = customEvent
     next && next()
   }
 }

@@ -24,16 +24,19 @@ yarn add auto-monitor
 #### vue react 的应用
 
 ```js
-import { detectDevice, error, event, monitor, performance, route } from 'auto-monitor'
+import { ajaxplugin, detectDevice, error, event, monitor, performance, route } from 'auto-monitor'
 
 monitor({
   url: 'http://localhost:4000'
 })
   .use('detectDevice', detectDevice())
   .use('performance', performance())
-  .use('event', event()).use('route', route())
+  .use('ajaxplugin', ajaxplugin())
+  .use('event', event())
+  .use('route', route())
   .use('error', error()).run((e) => {
     console.log(e)
     return e
   })
 ```
+埋点采用返回整个实体类, 可以根据自己的需要再 **run** 函数中选择自己需要的数据进行封装
