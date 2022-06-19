@@ -14,8 +14,36 @@ import {
   ajaxpluin
 } from 'auto-monitor'
 import App from './App.vue'
+let instance
 
-createApp(App).use(router).mount('#app')
+function render(props) {
+  const {
+    container
+  } = props;
+  instance = createApp(App);
+  instance
+    .use(router)
+    .mount(
+      container instanceof Element ?
+      (container.querySelector("#app")) :
+      (container)
+    );
+}
+// 独立运行时
+if (!window.__POWERED_BY_QIANKUN__) {
+  render({
+    container: "#app"
+  });
+}
+//暴露主应用生命周期钩子
+export async function bootstrap() {
+  console.log("subapp bootstraped");
+}
+
+export async function mount(props) {
+  console.log("mount subapp");
+  render(props);
+}
 
 window.monitorlist = []
 monitor({
