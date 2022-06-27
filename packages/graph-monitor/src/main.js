@@ -12,7 +12,7 @@ new Vue({
   router,
   store,
   render: (h) => h(App),
-}).$mount('#app');
+}).$mount('#app2');
 
 registerMicroApps([{
   name: 'webpackJsonp_vue2.0',
@@ -20,5 +20,4 @@ registerMicroApps([{
   container: '#container',
   activeRule: '/vue',
 }]);
-// 启动 qiankun
 start();
