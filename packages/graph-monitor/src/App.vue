@@ -20,28 +20,6 @@ export default {
     }
   },
   async created() {
-    // let myHeaders = new Headers({
-    //   'Access-Control-Allow-Origin': '*',
-    //   "Access-Control-Allow-Methods": "*",
-    //   "Access-Control-Allow-Headers": "*",
-    //   'Content-Type': 'text/plain'
-    // });
-    // fetch("https://sl-scenario-dashboard-sit.beantechyun.cn/pro/#/login", {
-    //   method: 'GET',
-
-    // }).then((res) => {
-    //   // TODO
-    //   console.log(res)
-    //   debugger
-    // })
-
-    // let id = document.querySelector('#container  ')
-    // id.addEventListener('mouseover',(e) => {
-    //   e.target.style.border = "1px solid red"
-    // })
-    // id.addEventListener(' mouseover',(e) => {
-    //   e.target.style.border = "1px solid border"
-    // })
   }
 }
 </script>
